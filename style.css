@@ -1,3 +1,7 @@
+/* TODO - vyřešit velikost obrázku happy-traveler ve verzi pro tablet a PC */
+/* TODO - vyřešit zarovnání textu v položkách u širších ikonek (mapa, auto/karavan) */
+
+
 /* intuitivnější box-sizing pro všechny prvky na stránce */
 html { box-sizing: border-box; }
 *, ::before, ::after { box-sizing: inherit; }
@@ -7,12 +11,11 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #8B8B8B;
     line-height: 21px;
-    /* text-align: center; */
+    background-color: #FAFAFA;
 }
 
 
 /* * Společné vlastnosti */
-
 h1, h2 {
     /* text-align: center; */
     font-weight: 500;
@@ -21,24 +24,24 @@ h1, h2 {
 
 h2 {
     font-size: 16px;
-}
-
-p {
-    text-align: center;
+    margin-bottom: 16px;
 }
 
 .centrovani {
-    width: 96%;
-    margin: 60px auto 0 auto;
+    /* width: 97%; */
+    /* margin: 60px auto 0 auto; */
+    margin: 60px 20px 0 20px;
+}
+
+.sluzby {
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 
-/* * HLAVNÍ SEKCE */
+/* ! HLAVNÍ SEKCE */
 h1 {
     font-size: 28px;
-    /* ! vlastnosti inline-block a relative navržena dle vzoru, ale vypadá, že nejsou nutné */
-    /* display: inline-block;
-    position: relative; */
     line-height: 37px;
     margin-top: 0;
     margin-bottom: 32px;
@@ -54,19 +57,27 @@ h1::after {
 }
 
 .hlavni-obrazek {
-    height: 290.5px;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
+    /* margin: 0 auto 35px auto; */
+    display: flex;
+    justify-content: center;
 }
 
-.sluzby {
-    text-align: center;
-    margin-bottom: 60px;
+.obrazek img {
+    width: 100%;
 }
 
-.sluzby-text p {
-    margin: 0;
+.obrazek {
+    flex: 0 0 40%;
 }
 
+.max-sirka {
+    /* ! Max width? Vyřešit šířku obrázku, nedořešeno ani ve verzi pro PC */
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+/* * Hlavní sekce - tlačítka */
 .tlacitka {
     display: flex;
     flex-direction: column;
@@ -78,16 +89,212 @@ a.tlacitko {
     text-decoration: none;
     font-size: 14px;
     border-radius: 20px;
+    padding: 11px 30px;
+    /* padding: 0 30px;
+    height: 40px; */
 }
 
 a.modre {
     margin-top: 30px;
-    padding: 11px 30px;
+    /* padding: 11px 30px; */
     background-color: #407BFF;
 }
 
 a.sede {
     margin-top: 10px;
-    padding: 11px 30px;
+    /* padding: 11px 30px; */
     background-color: #8B8B8B;
+}
+
+/* * Zvýraznění tlačítek po najetí myši - nad rámec zadání, ale dle UX standardů */
+a.modre:hover,
+a.modre:active {
+    background-color: #0b4ddc;
+}
+
+a.sede:hover,
+a.sede:active {
+    background-color: #474646;
+}
+
+
+/* ! SEKCE "SLUŽBY CESTOVNÍ KANCELÁŘE" */
+.prvni-odstavec {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.cestovka-text {
+    margin-bottom: 0;
+}
+
+.polozka {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 6px #407BFF1F;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.polozka p {
+    padding: 32px 0 20px 29px;
+    font-size: 13px;
+}
+
+
+/* TODO Vyřešit zarovnávání textu v položkách (položka mapy a auta - jsou to ikonky širší než ostatní)
+/*
+.polozka{
+    width: 45px;
+    height: 40px;
+}
+
+.polozka-sirka {
+    width: 45px;
+    height: 40px;
+    padding: 20px 0 20px 20px;
+}
+
+.polozka2 img {
+    width: 40px;
+    display: block;
+} */
+
+/* .polozka2 {
+    gap: 32px;
+} */
+
+
+/* ! VERZE PRO TABLET */
+@media screen and (min-width: 640px) {
+
+    .sluzby {
+        margin-bottom: 80px;
+    }
+
+    .hlavni-obrazek {
+        margin-bottom: 30px;
+    }
+
+    .tlacitka {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 20px;
+    }
+
+    a.modre,
+    a.sede {
+        margin: 0;
+    }
+
+    .polozky {
+        display: flex;
+        gap: 20px;
+    }
+
+    .polozka {
+        display: flex;
+        flex-direction: column;
+        flex: 0 1 calc(100% / 3);
+        padding: 40px 15px 21px 15px;
+        margin-bottom: 0;
+    }
+
+    .polozka p {
+        padding: 0;
+        line-height: 17px;
+    }
+
+    .ikona {
+        order: -1;
+    }
+
+}
+
+
+/* ! VERZE PRO PC */
+@media screen and (min-width: 1100px) {
+
+    .sluzby {
+        display: flex;
+        max-width: 1040px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 60px;
+    }
+
+    .sluzby1 {
+        display: flex;
+        gap: 0;
+    }
+
+    .hlavni-obrazek {
+        order: 1;
+        flex-basis: 50%;
+        margin-bottom: 0;
+    }
+
+    /* .obrazek {
+        margin-left: -25px;
+    } */
+
+    .obrazek img {
+        max-width: 425px;
+    }
+
+    h1, h2 {
+        text-align: left;
+    }
+
+    .sluzby-text h1 {
+        text-align: left;
+    }
+
+    .sluzby-text {
+        text-align: left;
+        flex-basis: 50%;
+    }
+
+    h1::after {
+        margin: 0;
+    }
+
+    .tlacitka {
+        justify-content: left;
+    }
+
+
+    /* ! První sekce není zarovnána dle předlohy, pravděpodobně to souvisí s hlavním obrázkem - ostatní sekce se dle vzoru podařilo zarovnat pomocí vlastnosti max-width */
+    .cestovka-polozky {
+        order: -1;
+        /* flex-basis: 50%; */
+        max-width: 550px;
+    }
+
+    .cestovka-text {
+        text-align: left;
+        /* flex-basis: 430px; */
+        max-width: 430px;
+    }
+
+    .delegati-text {
+        text-align: left;
+        /* flex-basis: 50%; */
+        max-width: 430px;
+    }
+
+    .delegati-polozky {
+        /* flex-basis: 50%; */
+        max-width: 550px;
+    }
+
+    /* /.max-sirka {
+        max-width: 430px;
+        margin: 0 auto;
+    } */
+
 }
